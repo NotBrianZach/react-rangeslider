@@ -51,7 +51,8 @@ class Slider extends Component {
     step: PropTypes.number,
     value: PropTypes.number,
     orientation: PropTypes.string,
-    onChange: PropTypes.func,
+    // onChange: PropTypes.func,
+    input: PropTypes.object,
     className: PropTypes.string
   }
 
@@ -121,7 +122,7 @@ class Slider extends Component {
    */
   handleDrag = (e) => {
     this.handleNoop(e)
-    const { onChange } = this.props
+    const { input: { onChange } } = this.props
     if (!onChange) return
 
     const value = this.position(e)
@@ -228,7 +229,7 @@ class Slider extends Component {
   }
 
   render () {
-    const { value, orientation, className } = this.props
+    const { input: { value }, orientation, className } = this.props
     const dimension = constants.orientation[orientation].dimension
     const direction = constants.orientation[orientation].direction
     const position = this.getPositionFromValue(value)
